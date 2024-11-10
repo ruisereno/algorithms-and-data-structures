@@ -69,3 +69,14 @@ func (s *Queue[T]) IsEmpty() bool {
 func (s *Queue[T]) Size() int {
 	return s.size
 }
+
+func (s *Queue[T]) LinearSeach(value T, comparator func(a, b T) bool) bool {
+	current := s.head
+	for current != nil {
+		if comparator(current.value, value) {
+			return true
+		}
+		current = current.next
+	}
+	return false
+}

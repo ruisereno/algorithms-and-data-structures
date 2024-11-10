@@ -73,3 +73,12 @@ func (a *ArrayList[T]) Capacity() int {
 func (a *ArrayList[T]) IsEmpty() bool {
 	return a.size == 0
 }
+
+func (a *ArrayList[T]) LinearSeach(value T, comparator func(a, b T) bool) bool {
+	for i := 0; i < a.size; i++ {
+		if comparator(a.data[i], value) {
+			return true
+		}
+	}
+	return false
+}

@@ -134,3 +134,32 @@ func TestStackSize(t *testing.T) {
 		t.Errorf("expected size 0 after popping all elements, got %d", s.Size())
 	}
 }
+
+func TestLinearSeach(t *testing.T) {
+	s := NewStack[int]()
+
+	// Linear search on an empty stack
+	if s.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+
+	// Push elements
+	s.Push(10)
+	s.Push(20)
+
+	// Linear search for a value that is on the stack
+	if s.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != true {
+		t.Error("expected linear search to return true, got false")
+	}
+
+	// Linear search for a value that is not on the stack
+	if s.LinearSeach(30, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+}

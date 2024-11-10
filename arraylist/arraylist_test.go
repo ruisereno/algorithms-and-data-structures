@@ -152,3 +152,32 @@ func TestSizeAndIsEmpty(t *testing.T) {
 		t.Error("expected list to be empty after removing all elements")
 	}
 }
+
+func TestLinearSeach(t *testing.T) {
+	list := NewArrayList[int](0)
+
+	// Linear search on an empty array list
+	if list.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+
+	// Add elements
+	list.Push(10)
+	list.Push(20)
+
+	// Linear search for a value that is on the array list
+	if list.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != true {
+		t.Error("expected linear search to return true, got false")
+	}
+
+	// Linear search for a value that is not on the array list
+	if list.LinearSeach(30, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+}

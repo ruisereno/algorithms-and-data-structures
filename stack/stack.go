@@ -59,3 +59,14 @@ func (s *Stack[T]) IsEmpty() bool {
 func (s *Stack[T]) Size() int {
 	return s.size
 }
+
+func (s *Stack[T]) LinearSeach(value T, comparator func(a, b T) bool) bool {
+	current := s.head
+	for current != nil {
+		if comparator(current.value, value) {
+			return true
+		}
+		current = current.next
+	}
+	return false
+}

@@ -151,3 +151,32 @@ func TestQueueSize(t *testing.T) {
 		t.Errorf("expected size 0 after dequeuing all elements, got %d", q.Size())
 	}
 }
+
+func TestLinearSeach(t *testing.T) {
+	q := NewQueue[int]()
+
+	// Linear search on an empty queue
+	if q.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+
+	// Enqueue elements
+	q.Enqueue(10)
+	q.Enqueue(20)
+
+	// Linear search for a value that is on the queue
+	if q.LinearSeach(10, func(a, b int) bool {
+		return a == b
+	}) != true {
+		t.Error("expected linear search to return true, got false")
+	}
+
+	// Linear search for a value that is not on the queue
+	if q.LinearSeach(30, func(a, b int) bool {
+		return a == b
+	}) != false {
+		t.Error("expected linear search to return false, got true")
+	}
+}
