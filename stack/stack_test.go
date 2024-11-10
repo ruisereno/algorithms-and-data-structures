@@ -110,21 +110,25 @@ func TestStackIsEmpty(t *testing.T) {
 func TestStackSize(t *testing.T) {
 	s := NewStack[int]()
 
+	// Size of empty queue
 	if s.Size() != 0 {
 		t.Errorf("expected initial size 0, got %d", s.Size())
 	}
 
+	// Push elements
 	s.Push(1)
 	s.Push(2)
 	if s.Size() != 2 {
 		t.Errorf("expected size 2 after two pushes, got %d", s.Size())
 	}
 
+	// Pop an element
 	_, _ = s.Pop()
 	if s.Size() != 1 {
 		t.Errorf("expected size 1 after one pop, got %d", s.Size())
 	}
 
+	// Pop last element
 	_, _ = s.Pop()
 	if s.Size() != 0 {
 		t.Errorf("expected size 0 after popping all elements, got %d", s.Size())
